@@ -1,0 +1,49 @@
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7lkKO6HiGg01oDdOylqpZW7ab1yK4yH8&signed_in=true"></script>
+    <script>
+        var jobTrain = new google.maps.LatLng(37.475774, -122.146630); 
+        
+        function initialize() {
+        var mapProp = {
+          center:jobTrain,
+          zoom:16,
+          scrollwheel:false,
+          mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+
+            var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">JobTrain</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>JobTrain</b>, is a non-profit ' +
+            'organization commited to helping those who are most in need to succeed. '+
+            'Our purpose is to improve the lives of people in our community through assessment, attitude and job skills training, and high potential career placement. '+
+            '<a href="www.jobtrainworks.org">'+
+            'www.JobTrainWorks.org</a> '+
+            '</div>'+
+            '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+
+        var map = new google.maps.Map(document.getElementById("map"),mapProp);
+
+        var marker = new google.maps.Marker({
+          position:jobTrain,
+          map: map,
+          title: 'JobTrain'
+          });
+          map.addListener('mouseover', function() {
+            infowindow.open(map, marker);
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+          map.addListener('mouseout', function() {
+            infowindow.close(map,marker);
+          });
+        };
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
